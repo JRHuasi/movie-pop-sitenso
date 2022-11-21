@@ -1,4 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
+import {} from 'react-r'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faHome, faLock, faMoon, faSearch, faSignIn, faSignOut } from '@fortawesome/free-solid-svg-icons'
@@ -16,7 +17,7 @@ function Nav() {
 			<div className='naranja'>
 				{home}
 			</div>
-			<div className='options'>
+			<div className='options boton'>
 				{isAuthenticated && search}
 				{isAuthenticated 
 					? <LogoutButton /> 

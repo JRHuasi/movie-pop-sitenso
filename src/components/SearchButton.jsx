@@ -5,7 +5,7 @@ const search = <FontAwesomeIcon icon={faSearch} />
 
 function LoginButton() {
 	return (
-		<div className='boton' title='BUSCADOR'>
+		<div className='buscador'>
 			{search}
 		</div>
 	)
