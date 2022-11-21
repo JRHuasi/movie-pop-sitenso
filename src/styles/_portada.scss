@@ -1,0 +1,17 @@
+.portada {
+	margin-top: 50px;
+	width: 60%;
+	max-width: 450px;
+	margin: auto;
+
+	img {
+		display: block;
+		width: 90%;
+		margin: auto;
+	}
+	div {
+		text-align: center;
+		font-size: 3rem;
+		color: $naranja;
+	}
+}

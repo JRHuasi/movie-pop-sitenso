@@ -1,0 +1,11 @@
+.nav {
+	display: grid;
+	grid-template-columns: 8fr 1fr 1fr;
+	
+	padding: 20px;
+	font-size: 1.5rem;
+	.options {
+		display: flex;
+		gap: 10px;
+	}
+}
