@@ -4,8 +4,8 @@
 @import './_vars';
 @import './profile';
 @import './portada';
-
-
+@import './search';
+@import './peliculas';
 
 body {
   margin: 0;
@@ -16,6 +16,7 @@ body {
 }
 
 .container {
+	padding: 10px;
 }
 
 .naranja {

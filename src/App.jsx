@@ -1,11 +1,15 @@
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 // import { useState } from 'react'
 import Portada from './components/Portada'
 import LoginButton from './components/LoginButton'
-// import Profile from './components/Profile'
+import Profile from './components/Profile'
 import LogoutButton from './components/LogoutButton'
 
 // import { useAuth0 } from '@auth0/auth0-react'
 import Nav from './components/Nav'
+import Search from './components/Search'
+import Detalle from './components/Detalle'
 
 
 
@@ -15,9 +19,19 @@ function App() {
 	// const { isAuthenticated } = useAuth0();
 
   return (
-    <div className='container'>
-			<Nav />
-			<Portada/>
+		<div className='container'>
+			<Router>
+				<Nav />
+				<Routes>
+					<Route path="/" element={<Portada/>}/>
+					<Route path="/search" element={<Search />}/>
+					<Route path="/profile" element={<Profile/>}/>
+					<Route path="/detalle/:id" element={<Detalle />}/>
+				</Routes>
+			</Router>
+			
+			
+			
 		</div>
   )
 }

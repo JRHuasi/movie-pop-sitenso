@@ -3,7 +3,7 @@
 function Portada() {
 	return (
 		<div className="portada">
-			<img src="/public/assets/imagenes/logo.png" alt=""/>
+			<img src="/assets/imagenes/logo.png" alt=""/>
 			<div>MoviePopP!</div>
 		</div>
 	)
