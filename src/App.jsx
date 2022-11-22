@@ -1,6 +1,6 @@
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-// import { useState } from 'react'
+import { Suspense } from 'react'
 import Portada from './components/Portada'
 import LoginButton from './components/LoginButton'
 import Profile from './components/Profile'
@@ -22,16 +22,15 @@ function App() {
 		<div className='container'>
 			<Router>
 				<Nav />
-				<Routes>
-					<Route path="/" element={<Portada/>}/>
-					<Route path="/search" element={<Search />}/>
-					<Route path="/profile" element={<Profile/>}/>
-					<Route path="/detalle/:id" element={<Detalle />}/>
-				</Routes>
-			</Router>
-			
-			
-			
+				<Suspense>
+					<Routes>
+						<Route path="/" element={<Portada/>}/>
+						<Route path="/search" element={<Search />}/>
+						<Route path="/profile" element={<Profile/>}/>
+						<Route path="/detalle/:id" element={<Detalle />}/>
+					</Routes>
+				</Suspense>
+			</Router>			
 		</div>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import { Auth0Provider } from '@auth0/auth0-react'
+import { SWRConfig} from 'swr'
 import './styles/sytles.scss'
 
 const clientID = import.meta.env.VITE_AUTH0_CLIENT_ID
@@ -16,7 +17,17 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 			domain={domain}
 			redirectUri={window.location.origin}
 		>
-    	<App />
+			<SWRConfig
+				value={{
+					fetcher: (...args) => {
+						return fetch(...args)
+						.then((res) => res.json())
+					},
+					suspense: true
+				}}
+			>
+    		<App />
+			</SWRConfig>
 		</Auth0Provider>
   </React.StrictMode>
 )

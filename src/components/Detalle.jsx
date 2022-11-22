@@ -1,49 +1,31 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import useSWR from 'swr'
 import { useParams, useNavigate } from "react-router-dom";
+import Comentarios from "./Comentarios";
+import Spinner from "./Spinner";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft, faBackward, faHeart, faHeartPulse, faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
+import Rating from "./Rating";
+import DetalleCard from "./DetalleCard";
+
 
 function Detalle() {
-	const [datos, setDatos] = useState([])
-	const { id } = useParams();
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		const uri =  `http://api.tvmaze.com/shows/${id}`
-		console.log(uri);
-		fetch(uri)
-			.then(response => response.json())
-			.then(data => {
-				setDatos(data);
-		})
-		console.log({datos})
-	}, [])
-
+	const [datos, setDatos] = useState([])
+	const { id } = useParams();
+	const uri =  `http://api.tvmaze.com/shows/${id}`
+	console.log(uri)
 	
+	let {data} = useSWR(uri)
+	console.log(data)
 	return (
-		<div className="detalle">
-			<div className="imagen">
-				<img src={datos.image.original} alt="datos.name"/>
-			</div>
-			<div className="nombre">{datos.name}</div>
-			<div className="datos">
-				<div className="dato">
-					<span>Lenguaje:</span>
-					{datos.language}
-				</div>
-				<div className="dato">
-					<span>Género:</span>				
-					{datos.genres.length && datos.genres.map((gen, key) => (
-						(<span key={key}>{gen}</span>)
-					))}
-				</div>
-				<div className="dato">
-					<span>Fecha de Estreno</span>
-					<span>{datos.premiered}</span>
-				</div>
-			</div>
-			<div className="nombre">Sinopsis</div>
-			<div className="sinopsis" dangerouslySetInnerHTML={{ __html: datos.summary }} />
+		<div>
+			<DetalleCard datos={data} />
+			<Comentarios />
 		</div>
 	)
+
 }
 
 export default Detalle

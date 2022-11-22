@@ -34,14 +34,39 @@
 .detalle {
 	max-width: 450px;
 	margin: auto;
+	.titulo {
+		display: grid;
+		grid-template-columns: 2fr 8fr 2fr;
+		text-align: center;
+		font-size: 1.3rem;
+		margin: 10px 0;
+	}
 	.nombre {
 		text-align: center;
 		font-size: 1.3rem;
 		margin: 10px 0;
 	}
 	.imagen {
+		position: relative;
 		img {
 			width: 100%;
+		}
+		.rating {
+			display: grid;
+			grid-template-columns: 8fr 1fr;
+			gap: 10px;
+			position: absolute;
+			bottom: 10px;
+			width: 100%;
+			.calificacion{
+				margin-left: 10px;
+			}
+			.favorito {
+				text-align: center;
+				&.elegido{
+					color: red;
+				}
+			}
 		}
 	}
 	.datos {
@@ -56,4 +81,9 @@
 		text-indent: 25px;
 		// &::first-letter
 	}
+}
+
+.estrellas {
+	display: flex;
+	gap: 3px;
 }

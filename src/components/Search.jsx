@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import Peliculas from './Peliculas'
 
-
-
 function Search() {
 	const [listaPeliculas, setListaPeliculas] = useState([])
 	const [buscar, setBuscar] = useState("star war")
