@@ -51,8 +51,14 @@ function DetalleCard({ datos }) {
 				}
 			</div>
 			<div className="dato">
-				<span>Fecha de Estreno</span>
-				<span>{tomarFechaFormatoArg(datos.premiered)}</span>
+				<span>Fecha de Estreno:</span>
+				<div>{tomarFechaFormatoArg(datos.premiered)}</div>
+			</div>
+			<div className="dato">
+				<span>Cast:</span>
+				<div className="cast">{datos._embedded.cast.map((person, key) => (
+					<span className="persona">{person.person.name}</span>
+				))}</div>
 			</div>
 		</div>
 		<div className="nombre">Sinopsis</div>

@@ -14,7 +14,7 @@ function Detalle() {
 
 	const [datos, setDatos] = useState([])
 	const { id } = useParams();
-	const uri =  `http://api.tvmaze.com/shows/${id}`
+	const uri =  `http://api.tvmaze.com/shows/${id}?embed=cast`
 	console.log(uri)
 	
 	let {data} = useSWR(uri)
