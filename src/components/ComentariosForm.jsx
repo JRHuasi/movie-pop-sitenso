@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { apiURL } from '../tools/definiciones'
 
-function ComentariosForm({peliID}) {
+function ComentariosForm({peliID, getComentarios}) {
 	const [texto, setTexto] = useState("")
 	const handlesubmit = async (e) => {
 		e.preventDefault();
@@ -23,6 +23,7 @@ function ComentariosForm({peliID}) {
 			}, {headers}
 		).then(response => {
 			console.log("Success C =>", response);
+			getComentarios(peliID);
 		})
 		.catch(error => {
 				console.log("Error C =>", error);
