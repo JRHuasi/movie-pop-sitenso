@@ -26,7 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 					suspense: true
 				}}
 			>
-    		<App />
+   			<App />
 			</SWRConfig>
 		</Auth0Provider>
   </React.StrictMode>

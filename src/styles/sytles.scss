@@ -6,6 +6,7 @@
 @import './portada';
 @import './search';
 @import './peliculas';
+@import './comentarios';
 
 body {
   margin: 0;
@@ -25,6 +26,13 @@ body {
 
 .boton {
 	cursor: pointer;
+	&.button{
+		border-radius: 5px;
+		padding: 5px;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
 }
+
 
 // rfce

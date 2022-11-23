@@ -1,0 +1,39 @@
+.comentario-form {
+	width: 60%;
+	max-width: 600px;
+	margin: auto;
+	.titulo {
+		text-align: center;
+	}
+	form {
+		text-align: center;
+		.textarea {
+			textarea{
+				width: 100%;
+			}
+		}
+	}
+}
+
+.comentarios-lista {
+	width: 60%;
+	max-width: 600px;
+	margin: auto;
+	.titulo {
+		text-align: center;
+	}
+	.comentario {
+		background-color: $fondo;
+		padding: 5px;
+		border-radius: 5px;
+		margin-bottom: 10px;
+		.fecha {
+			font-size: .9rem;
+		}
+		.texto {
+			width: 100%;
+			text-indent: 25px;
+			text-align:justify;		
+		}
+	}
+}

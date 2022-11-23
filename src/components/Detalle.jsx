@@ -1,12 +1,13 @@
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useSWR from 'swr'
 import { useParams, useNavigate } from "react-router-dom";
-import Comentarios from "./Comentarios";
 import Spinner from "./Spinner";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faBackward, faHeart, faHeartPulse, faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
 import Rating from "./Rating";
 import DetalleCard from "./DetalleCard";
+import ComentariosLista from "./ComentariosLista";
+import ComentariosForm from "./ComentariosForm";
 
 
 function Detalle() {
@@ -22,10 +23,11 @@ function Detalle() {
 	return (
 		<div>
 			<DetalleCard datos={data} />
-			<Comentarios />
+			<hr/>
+			<ComentariosLista peliID={data.id} />
+			<ComentariosForm peliID={data.id} />
 		</div>
 	)
-
 }
 
 export default Detalle

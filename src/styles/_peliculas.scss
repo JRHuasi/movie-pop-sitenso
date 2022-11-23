@@ -69,6 +69,11 @@
 			}
 		}
 	}
+	.rating {
+		background-color: rgba(0,0,0,.3);
+		padding: 3px 0;
+		margin-bottom: -5px;
+	}
 	.datos {
 		.dato{
 			display: flex;
@@ -82,7 +87,7 @@
 				width: 90%;			
 				span.persona {
 					font-weight: lighter;
-					background-color: rgba(255,255,255,.3);
+					background-color: $fondo;
 					padding: 0px 3px;
 					line-height: 1.8rem;
 					border-radius: 5px;
@@ -92,7 +97,6 @@
 	}
 	.sinopsis {
 		text-indent: 25px;
-		// &::first-letter
 	}
 }
 
