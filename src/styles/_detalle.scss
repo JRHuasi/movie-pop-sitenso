@@ -1,0 +1,83 @@
+.detalle {
+	max-width: 450px;
+	margin: auto;
+	@media (min-width: 1024px) {
+		display: grid;
+		grid-template-columns: repeat(2,1fr);
+		max-width: 90%;
+		gap: 30px;
+	}
+	.nombre {
+		text-align: center;
+		font-size: 1.3rem;
+		margin: 10px 0;
+	}
+	.imagen {
+		position: relative;
+		img {
+			width: 100%;
+		}
+		.rating {
+			display: grid;
+			grid-template-columns: 8fr 1fr;
+			gap: 10px;
+			position: absolute;
+			bottom: 6px;
+			width: 100%;
+			background-color: rgba(0,0,0,.3);
+			padding: 3px 0;
+			.calificacion{
+				margin-left: 10px;
+			}
+			.favorito {
+				text-align: center;
+				&.elegido{
+					color: red;
+				}
+			}
+		}
+	}
+	.titulo {
+		display: grid;
+		grid-template-columns: 2fr 8fr 2fr;
+		text-align: center;
+		font-size: 1.3rem;
+		margin: 10px 0;
+	}
+	.datos {
+		.dato{
+			display: flex;
+			span{
+				font-weight: bold;
+				margin-right: 10px;
+			}
+			.cast {
+				display: inline;
+				gap: 5px;	
+				width: 90%;			
+				span.persona {
+					font-weight: lighter;
+					background-color: $fondo;
+					padding: 0px 3px;
+					line-height: 1.8rem;
+					border-radius: 5px;
+				}
+			}
+		}
+		.sinopsis {
+			.titulo {
+				text-align: center;
+				display: block;
+			}
+			.cuerpo {
+				text-indent: 25px;
+				text-align: justify;
+			}
+		}
+	}
+}
+
+.estrellas {
+	display: flex;
+	gap: 3px;
+}

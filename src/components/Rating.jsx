@@ -21,8 +21,8 @@ function Rating({valor}) {
 			<div>
 				{media && (starHalf)}
 			</div>
+			<small>[{valor}]</small>
 		</div>
 	)
 }
-
 export default Rating

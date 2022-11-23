@@ -27,10 +27,9 @@ function Search() {
 	return (
 		<div className="search">
 			<div className="form">				
-			<form onSubmit={handleSubmit}>
-				<input type="text" placeholder='buscar' onChange={(e) => setBuscar(e.target.value)}/>				
-			</form>
-				<hr/>
+				<form onSubmit={handleSubmit}>
+					<input type="text" placeholder='buscar' onChange={(e) => setBuscar(e.target.value)}/>				
+				</form>
 			</div>
 			<Peliculas lista={listaPeliculas} />
 		</div>

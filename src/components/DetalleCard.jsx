@@ -17,34 +17,28 @@ function DetalleCard({ datos }) {
 	// console.log("CARD", datos);
 	const navigate = useNavigate();
 	const [favorito, setFavorito] = useState(false)
+
 	const setFarovito = async () => {
-		const uri = `${apiURL}/?accion=set-favorito`;
-		const data = {
-			userID: "1",
-			peliID: datos.id 
+		if(!favorito){
+			const uri = `${apiURL}/?accion=set-favorito`;
+			const data = {
+				userID: "1",
+				peliID: datos.id 
+			}
+			const headers = {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			};
+			// console.log("DATOS", datos)
+			await axios.post(uri, data, {headers}
+			).then(response => {
+				console.log("Success ========>", response);
+				setFavorito(true);
+			})
+			.catch(error => {
+					console.log("Error ========>", error);
+			})
 		}
-		const headers = {
-			'Content-Type': 'application/x-www-form-urlencoded'
-		};
-		// console.log("DATOS", datos)
-		await axios.post(uri, data, {headers}
-		).then(response => {
-			console.log("Success ========>", response);
-			setFavorito(true);
-		})
-		.catch(error => {
-				console.log("Error ========>", error);
-		})
 	}
-
-	// const uri = `${apiURL}/?accion=get-favorito&peliID=${datos.id}=&userID=1`;
-	// console.log("URIIUR",uri)
-	
-	// let {fav} = useSWR(uri)
-	// console.log("favorito", fav)
-	// setFarovito(fav.length > 0 && true)
-
-
 
 	const getFarovito = async () => {
 		const uri = `${apiURL}/?accion=get-favorito&peliID=${datos.id}=&userID=1`;
@@ -72,7 +66,6 @@ function DetalleCard({ datos }) {
 	? datos.image.original 
 	: '/assets/imagenes/comodin.jpg'
 
-
 	return (
 		<div className="detalle">
 			<div className="imagen">
@@ -80,6 +73,7 @@ function DetalleCard({ datos }) {
 					src={afiche}
 					alt="datos.name"
 				/>
+				{/* rating */}
 				<div className="rating">
 					<div className="calificacion">
 						{datos.rating.average !== null	&& <Rating valor={datos.rating.average} />}						
@@ -91,42 +85,48 @@ function DetalleCard({ datos }) {
 					</div>
 				</div>
 			</div>
-			<div className="titulo">
-				<div className="boton" onClick={() => navigate(-1)}>
-					{back}
+			<div className="datos">
+				{/* título */}
+				<div className="titulo">
+					<div className="boton" onClick={() => navigate(-1)}>
+						{back}
+					</div>
+					<div>
+						{datos.name}
+					</div>
 				</div>
-				<div>
-					{datos.name}
+				{/* Lenguaje */}
+				<div className="dato">
+					<span>Lenguaje:</span>
+					{datos.language}
 				</div>
-				<div>
+				{/* Género */}
+				<div className="dato">
+					<span>Género:</span>				
+					{datos.genres.length !== 0 
+						? datos.genres.map((gen, key) => ((<span key={key}>{gen}</span>)))
+						: <>No definido</>
+					}
+				</div>
+				{/* Estreno */}
+				<div className="dato">
+					<span>Fecha de Estreno:</span>
+					<div>{datos.premiered ? tomarFechaFormatoArg(datos.premiered) : 'No especificada'}</div>
+				</div>
+				{/* Cast */}
+				<div className="dato">
+					<span>Actores:</span>
+					<div className="cast">{datos._embedded.cast.map((person, key) => (
+						<span className="persona" key={key}>&#65517; {person.person.name}</span>
+					))}</div>
+				</div>
+				<div className='sinopsis'>
+					<div className="titulo">Sinopsis</div>
+					<div className="cuerpo" dangerouslySetInnerHTML={{ __html: datos.summary }}></div>
+				</div>
 			</div>
 		</div>
-		<div className="datos">
-			<div className="dato">
-				<span>Lenguaje:</span>
-				{datos.language}
-			</div>
-			<div className="dato">
-				<span>Género:</span>				
-				{datos.genres.length !== 0 
-					? datos.genres.map((gen, key) => ((<span key={key}>{gen}</span>)))
-					: <>No definido</>
-				}
-			</div>
-			<div className="dato">
-				<span>Fecha de Estreno:</span>
-				<div>{datos.premiered ? tomarFechaFormatoArg(datos.premiered) : 'No especificada'}</div>
-			</div>
-			<div className="dato">
-				<span>Cast:</span>
-				<div className="cast">{datos._embedded.cast.map((person, key) => (
-					<span className="persona" key={key}>&#65517; {person.person.name}</span>
-				))}</div>
-			</div>
-		</div>
-		<div className="nombre">Sinopsis</div>
-		<div className="sinopsis" dangerouslySetInnerHTML={{ __html: datos.summary }} /> 
-		</div>
+
 	);
 }
 

@@ -1,14 +1,42 @@
 .peliculas-contenedor {
-
 	.titulo{
-		text-align: center;
-		margin: 10px 0;
+		max-width: 650px;
+		text-align: left;
+		margin: auto;
+		padding: 20px 0;
+		font-size: 1.2rem;
 	}
 	.peliculas {
 		width: 100%;
 		display: grid;
-		grid-template-columns: repeat(3,1fr);
+		grid-template-columns: repeat(5,1fr);
 		gap: 10px;
+		@media (max-width: 1440px) {
+			grid-template-columns: repeat(4,1fr);
+		}
+		@media (max-width: 1024px) {
+			grid-template-columns: repeat(3,1fr);
+		}
+		@media (max-width: 768px) {
+			grid-template-columns: repeat(2,1fr);
+		}
+		@media (max-width: 550px) {
+			grid-template-columns: repeat(1,1fr);
+			justify-content: center;
+			align-items: center;
+		}
+		.pelicula {
+			margin: auto;
+			width: 100%;
+			.imagen {
+				img{
+					width: 100%;
+				}
+			}
+			.nombre {
+				text-align: right;
+			}
+		}
 	}
 	.sin-resultados {
 		display: block;
@@ -22,85 +50,3 @@
 	}
 }
 
-.pelicula {
-	.imagen {
-		width: 100%;
-	}
-	.nombre {
-		text-align: center;
-	}
-}
-
-.detalle {
-	max-width: 450px;
-	margin: auto;
-	.titulo {
-		display: grid;
-		grid-template-columns: 2fr 8fr 2fr;
-		text-align: center;
-		font-size: 1.3rem;
-		margin: 10px 0;
-	}
-	.nombre {
-		text-align: center;
-		font-size: 1.3rem;
-		margin: 10px 0;
-	}
-	.imagen {
-		position: relative;
-		img {
-			width: 100%;
-		}
-		.rating {
-			display: grid;
-			grid-template-columns: 8fr 1fr;
-			gap: 10px;
-			position: absolute;
-			bottom: 10px;
-			width: 100%;
-			.calificacion{
-				margin-left: 10px;
-			}
-			.favorito {
-				text-align: center;
-				&.elegido{
-					color: red;
-				}
-			}
-		}
-	}
-	.rating {
-		background-color: rgba(0,0,0,.3);
-		padding: 3px 0;
-		margin-bottom: -5px;
-	}
-	.datos {
-		.dato{
-			display: flex;
-			span{
-				font-weight: bold;
-				margin-right: 10px;
-			}
-			.cast {
-				display: inline;
-				gap: 5px;	
-				width: 90%;			
-				span.persona {
-					font-weight: lighter;
-					background-color: $fondo;
-					padding: 0px 3px;
-					line-height: 1.8rem;
-					border-radius: 5px;
-				}
-			}
-		}
-	}
-	.sinopsis {
-		text-indent: 25px;
-	}
-}
-
-.estrellas {
-	display: flex;
-	gap: 3px;
-}
