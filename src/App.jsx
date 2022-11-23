@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import { Suspense } from 'react'
 import Portada from './components/Portada'
 import LoginButton from './components/LoginButton'
@@ -10,8 +10,6 @@ import LogoutButton from './components/LogoutButton'
 import Nav from './components/Nav'
 import Search from './components/Search'
 import Detalle from './components/Detalle'
-
-
 
 function App() {
   // const [count, setCount] = useState(0)

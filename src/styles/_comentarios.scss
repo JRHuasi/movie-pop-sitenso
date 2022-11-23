@@ -16,7 +16,7 @@
 }
 
 .comentarios-lista {
-	width: 60%;
+	width: 90%;
 	max-width: 600px;
 	margin: auto;
 	.titulo {
@@ -24,7 +24,7 @@
 		padding: 10px 0;
 	}
 	.comentario {
-		background-color: $fondo;
+		background-color: $fondoAreasTexto;
 		padding: 5px;
 		border-radius: 5px;
 		margin-bottom: 10px;

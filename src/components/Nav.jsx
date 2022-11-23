@@ -1,8 +1,8 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { useNavigate} from 'react-router-dom'
+import { useNavigate, NavLink} from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faHome, faLock, faMoon, faSearch, faSignIn, faSignOut } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faHome, faLock, faMoon, faSearch, faSignIn, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons'
 import LoginButton from './LoginButton'
 import LogoutButton from './LogoutButton'
 import SearchButton from './SearchButton'
@@ -10,6 +10,7 @@ import ProfileButton from './ProfileButton'
 
 const home = <FontAwesomeIcon icon={faHome} />
 const search = <FontAwesomeIcon icon={faSearch} />
+const userProfile = <FontAwesomeIcon icon={faUser} />
 
 function Nav() {
 
@@ -19,12 +20,27 @@ function Nav() {
 	return (
 		<div className='nav'>
 			<div></div>
-			<div className='naranja boton' onClick={() => navigate("/")}>
-				{home}
+			<div>
+				<NavLink 
+					style={({isActive}) => ({color: isActive ? '#b78206':'white'})}
+					to='/'>{home}
+				</NavLink>
+			</div>
+			<div>
+				<NavLink 
+					style={({isActive}) => ({color: isActive ? '#b78206':'white'})}
+					to='/search'>{search}
+				</NavLink>
+			</div>
+			<div>
+				{isAuthenticated 
+					&& <NavLink 
+						style={({isActive}) => ({color: isActive ? '#b78206':'white'})}
+						to='/profile'>{userProfile}
+					</NavLink>
+				}
 			</div>
 			<div className='options boton'>
-				{isAuthenticated && <SearchButton/>}
-				{isAuthenticated && <ProfileButton/>}
 				{isAuthenticated 
 					? <LogoutButton /> 
 					: <LoginButton />}
