@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { searchMovie } from '../api/axios'
+import useSWR from 'swr'
 import Peliculas from './Peliculas'
 
 function Search() {
@@ -6,21 +8,20 @@ function Search() {
 	const [buscar, setBuscar] = useState("star war")
 	
 	const buscarPeliculas = (texto) => {
-		const uri = `http://api.tvmaze.com/search/shows?q=${texto}`
-		console.log({uri})
-		fetch(uri)
-				.then(response => response.json())
-				.then(data => {
-					setListaPeliculas(data);
-				})
+		searchMovie(texto)
+			.then(data => {
+				setListaPeliculas(data)
+			}
+		)
 	}
-
+	
 	useEffect(() => {
 		buscarPeliculas("star war");
 	}, [ ])
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		console.log({buscar})
 		buscarPeliculas(buscar);
 	}
 

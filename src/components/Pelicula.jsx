@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
 function Pelicula({pelicula}) {
-	console.log({pelicula})
+	// console.log({pelicula})
 	const navigate = useNavigate()
 	const id = pelicula.show.id
 	const afiche = pelicula.show.image !== null 

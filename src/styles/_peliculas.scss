@@ -1,11 +1,16 @@
-.peliculas-contenedor {
-	.titulo{
-		max-width: 650px;
-		text-align: left;
-		margin: auto;
-		padding: 20px 0;
-		font-size: 1.2rem;
+.peliculas-titulo{
+  width: 350px;
+	text-align: left;
+	margin: auto;
+	padding: 20px 0;
+	padding-left: 30px;
+	font-size: 1.2rem;
+	@media (max-width: 768px) {
+		width: 80%;
 	}
+
+}
+.peliculas-contenedor {
 	.peliculas {
 		width: 100%;
 		display: grid;
@@ -40,12 +45,13 @@
 	}
 	.sin-resultados {
 		display: block;
+		text-align: center;
 		margin: auto;
 		margin-top: 50px;
-		max-width: 300px;
+		width: 300px;
 		text-align: center;
 		background-color: rgba(255,0,0,.3);
-		padding: 5px;
+		padding: 5px 10PX;
 		border-radius: 5px;
 	}
 }

@@ -14,7 +14,7 @@ const back = <FontAwesomeIcon icon={faArrowLeft} />
 
 
 function DetalleCard({ datos }) {
-	// console.log("CARD", datos);
+	console.log("CARD", datos);
 	const navigate = useNavigate();
 	const [favorito, setFavorito] = useState(false)
 
@@ -104,7 +104,7 @@ function DetalleCard({ datos }) {
 				<div className="dato">
 					<span>Género:</span>				
 					{datos.genres.length !== 0 
-						? datos.genres.map((gen, key) => ((<span key={key}>{gen}</span>)))
+						? datos.genres.map((gen, key) => (<span key={key}>{gen}</span>))
 						: <>No definido</>
 					}
 				</div>
@@ -116,9 +116,12 @@ function DetalleCard({ datos }) {
 				{/* Cast */}
 				<div className="dato">
 					<span>Actores:</span>
-					<div className="cast">{datos._embedded.cast.map((person, key) => (
-						<span className="persona" key={key}>&#65517; {person.person.name}</span>
-					))}</div>
+					<div className="cast">{
+						datos._embedded.cast.map((person, key) => (
+							<span className="persona" key={key}>&#65517; {person.person.name}</span>
+						))}
+						{datos._embedded.cast.length === 0 && <>Sin información</>}
+					</div>
 				</div>
 				<div className='sinopsis'>
 					<div className="titulo">Sinopsis</div>

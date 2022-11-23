@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
 import useSWR from 'swr'
+import { searchMovieDetail } from '../api/axios'
+import { Suspense } from 'react'
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Spinner from "./Spinner";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faBackward, faHeart, faHeartPulse, faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
+
 import Rating from "./Rating";
 import DetalleCard from "./DetalleCard";
 import ComentariosLista from "./ComentariosLista";
@@ -14,19 +17,30 @@ function Detalle() {
 	const navigate = useNavigate();
 
 	const [datos, setDatos] = useState([])
+	const [loading, setLoading] = useState(true)
 	const { id } = useParams();
-	const uri =  `http://api.tvmaze.com/shows/${id}?embed=cast`
-	console.log(uri)
-	
-	let {data} = useSWR(uri)
-	console.log(data)
+
+	useEffect(() => {
+		searchMovieDetail(id)
+			.then(data => {
+				setDatos(data)
+				setLoading(false)
+			}
+		)
+	}, [])
+
 	return (
 		<div>
-			<DetalleCard datos={data} />
-			<hr/>
-			<ComentariosLista peliID={data.id} />
-			<ComentariosForm peliID={data.id} />
-		</div>
+			{ !loading 
+				&& 
+				<>
+				<DetalleCard datos={datos} />
+				<hr/>
+				<ComentariosLista peliID={datos.id} />
+				<ComentariosForm peliID={datos.id} />
+				</>				
+			}
+		</div>		
 	)
 }
 
