@@ -22,10 +22,10 @@ function ComentariosForm({peliID}) {
 				texto: texto, 
 			}, {headers}
 		).then(response => {
-			console.log("Success ========>", response);
+			console.log("Success C =>", response);
 		})
 		.catch(error => {
-				console.log("Error ========>", error);
+				console.log("Error C =>", error);
 		})
 	}
 	return (

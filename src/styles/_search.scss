@@ -21,4 +21,26 @@
 			}
 		}
 	}
+
+	.spinner {
+		// position: absolute;
+		margin: auto;
+		margin-top: 50px;
+		animation: spin infinite 2s linear;
+		font-size: 100px;
+		width: 100px;
+		z-index: 99;
+		color: w;
+	}
+	
+}
+
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
