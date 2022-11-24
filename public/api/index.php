@@ -34,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
   $postBody = file_get_contents("php://input");
 	switch ($_GET['accion']) {
 		case 'add-comentario':
-			$datosArray = $_comentarios->addComentario($_POST['userID'],$_POST['peliID'], $_POST['texto']);
+			$datosArray = $_comentarios->addComentario($_POST['userID'],$_POST['peliID'], $_POST['texto'], $_POST['usuario'], $_POST['nombre'], $_POST['email']);
+			// $datosArray = $_REQUEST;
 			break;
 		case 'set-favorito':
 			$datosArray = $_comentarios->setFavorito($_POST['userID'],$_POST['peliID'],$_POST['afiche'],$_POST['nombre']);

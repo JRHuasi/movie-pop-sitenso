@@ -1,4 +1,8 @@
 import { tomarFechaFormatoArg } from '../tools/functions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faComment } from '@fortawesome/free-solid-svg-icons'
+
+const comment = <FontAwesomeIcon icon={faComment} />
 
 function ComentariosLista({comentarios}) {
 
@@ -12,8 +16,8 @@ function ComentariosLista({comentarios}) {
 			{comentarios.length !== 0 
 				&& comentarios.map((coment, key) => (
 				<div key={key} className="comentario">
-					<div className='fecha'>{tomarFechaFormatoArg(coment.fechaAlta)}</div>
-					<div className='texto'>{coment.texto}</div>
+					<div className='texto'>{comment} {coment.texto}</div>
+					<div className='fecha'>{`${tomarFechaFormatoArg(coment.fechaAlta)} ${coment.nombre} [${coment.usuario}]`}</div>
 				</div>)
 				)
 			}		

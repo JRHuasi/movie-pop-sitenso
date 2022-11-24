@@ -13,6 +13,15 @@
 			}
 		}
 	}
+	.registrate {
+		text-align: center;
+		padding: 20px;
+		font-style: italic;
+		.link {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+	}
 }
 
 .comentarios-lista {
@@ -33,7 +42,6 @@
 		}
 		.texto {
 			width: 100%;
-			text-indent: 25px;
 			text-align:justify;		
 		}
 	}

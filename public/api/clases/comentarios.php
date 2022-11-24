@@ -17,12 +17,13 @@
 			return $lista?$lista['ordenNro']+1:1;
 		}
 
-		function addComentario($userID, $peliID, $texto){
+		function addComentario($userID, $peliID, $texto, $usuario, $nombre, $email){
 			// Evita injeción de SQL
 			$texto = $this->filtrar($texto);
-			$query = "INSERT INTO comentarios SET peliID = '$peliID', userID = '$userID', texto = '$texto'";			
+			$query = "INSERT INTO comentarios SET peliID = '$peliID', userID = '$userID', texto = '$texto', usuario='$usuario', nombre = '$nombre', email = '$email'";
 			$lista = $this->nonQueryId($query);
 			return $lista;
+			// return $query;
 		}
 		
 		function setFavorito($userID, $peliID, $afiche, $nombre){
