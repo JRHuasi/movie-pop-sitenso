@@ -2,7 +2,6 @@ import Pelicula from "./Pelicula"
 
 
 function Peliculas({lista}) {
-	console.log({lista})
 	return (
 		<>
 		<div className="peliculas-titulo">Películas</div>

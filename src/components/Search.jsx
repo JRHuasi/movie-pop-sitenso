@@ -28,7 +28,6 @@ function Search() {
 
 	const handlScroll = (e) => {
 		if(window.innerHeight + e.target.documentElement.scrollTop + 1 >= e.target.documentElement.scrollHeight){
-			console.log("bottom")
 			buscarPeliculas(true)
 		}
 	}
@@ -40,8 +39,7 @@ function Search() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log({buscar})
-		buscarPeliculas(buscar);
+		buscarPeliculas();
 	}
 
 	return (
