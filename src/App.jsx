@@ -1,6 +1,6 @@
 
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
-import { Suspense } from 'react'
+import { Suspense, useContext } from 'react'
 import Portada from './components/Portada'
 import LoginButton from './components/LoginButton'
 import Profile from './components/Profile'

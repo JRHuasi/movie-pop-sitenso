@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { SearchContext } from '../context/SearchContext'
 import { searchMovie } from '../api/axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -9,13 +10,17 @@ const spinner = <FontAwesomeIcon icon={faSpinner} />
 
 function Search() {
 	const [listaPeliculas, setListaPeliculas] = useState([])
-	const [buscar, setBuscar] = useState("star war")
 	const [spinnerShow, setSpinnerShow] = useState(false)
+	// const [buscar, setBuscar] = useState("star war")
+	
+	const {buscar, setBuscar} = useContext(SearchContext)
+	// console.log({valor})
 
 	
 	const buscarPeliculas = (agregar = false) => {
 		!agregar && setListaPeliculas([])
 		setSpinnerShow(true)
+		// buscarCtx = buscar
 		searchMovie(buscar)
 		.then(data => {
 			agregar 

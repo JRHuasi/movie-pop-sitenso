@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { useNavigate, NavLink} from 'react-router-dom'
+import { useNavigate, NavLink, useLocation} from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faCoffee, faHome, faLock, faMoon, faSearch, faSignIn, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons'
@@ -13,13 +13,20 @@ const back = <FontAwesomeIcon icon={faArrowLeft} />
 
 function Nav() {
 
-	const { isAuthenticated } = useAuth0();
-	const navigate = useNavigate();
+	const { isAuthenticated } = useAuth0()
+	const navigate = useNavigate()
+	let location = useLocation()
 	
 	return (
 		<div className='nav'>
-			<div className="boton" onClick={() => navigate(-1)}>
-				{back}
+			<div>
+				{ location.pathname !== '/' 
+				&& <>
+						<div className="boton" onClick={() => navigate(-1)}>
+							{back}
+						</div>
+					</>
+			}
 			</div>
 			<div>
 				<NavLink 
