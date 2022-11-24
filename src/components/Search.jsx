@@ -11,20 +11,31 @@ function Search() {
 	const [listaPeliculas, setListaPeliculas] = useState([])
 	const [buscar, setBuscar] = useState("star war")
 	const [spinnerShow, setSpinnerShow] = useState(false)
+
 	
-	const buscarPeliculas = (texto) => {
-		setListaPeliculas([])
+	const buscarPeliculas = (agregar = false) => {
+		!agregar && setListaPeliculas([])
 		setSpinnerShow(true)
-		searchMovie(texto)
+		searchMovie(buscar)
 		.then(data => {
-			setListaPeliculas(data)
+			agregar 
+			? setListaPeliculas(listaActual => [...listaActual, ...data])
+			: setListaPeliculas(data)
 			setSpinnerShow(false)
 			}
 		)
 	}
+
+	const handlScroll = (e) => {
+		if(window.innerHeight + e.target.documentElement.scrollTop + 1 >= e.target.documentElement.scrollHeight){
+			console.log("bottom")
+			buscarPeliculas(true)
+		}
+	}
 	
 	useEffect(() => {
-		buscarPeliculas("star war");
+		buscarPeliculas();
+		window.addEventListener('scroll', handlScroll)
 	}, [ ])
 
 	const handleSubmit = (e) => {
