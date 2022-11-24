@@ -2,13 +2,14 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate, NavLink} from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faHome, faLock, faMoon, faSearch, faSignIn, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faCoffee, faHome, faLock, faMoon, faSearch, faSignIn, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons'
 import LoginButton from './LoginButton'
 import LogoutButton from './LogoutButton'
 
 const home = <FontAwesomeIcon icon={faHome} />
 const search = <FontAwesomeIcon icon={faSearch} />
 const userProfile = <FontAwesomeIcon icon={faUser} />
+const back = <FontAwesomeIcon icon={faArrowLeft} />
 
 function Nav() {
 
@@ -17,7 +18,9 @@ function Nav() {
 	
 	return (
 		<div className='nav'>
-			<div></div>
+			<div className="boton" onClick={() => navigate(-1)}>
+				{back}
+			</div>
 			<div>
 				<NavLink 
 					style={({isActive}) => ({color: isActive ? '#b78206':'white'})}

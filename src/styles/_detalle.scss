@@ -38,8 +38,7 @@
 		}
 	}
 	.titulo {
-		display: grid;
-		grid-template-columns: 2fr 8fr 2fr;
+		display: block;
 		text-align: center;
 		font-size: 1.3rem;
 		margin: 10px 0;

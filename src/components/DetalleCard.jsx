@@ -98,12 +98,7 @@ function DetalleCard({ datos }) {
 			<div className="datos">
 				{/* título */}
 				<div className="titulo">
-					<div className="boton" onClick={() => navigate(-1)}>
-						{back}
-					</div>
-					<div>
-						{datos.name}
-					</div>
+					{datos.name}
 				</div>
 				{/* Lenguaje */}
 				<div className="dato">
