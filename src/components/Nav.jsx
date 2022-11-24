@@ -5,8 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faHome, faLock, faMoon, faSearch, faSignIn, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons'
 import LoginButton from './LoginButton'
 import LogoutButton from './LogoutButton'
-import SearchButton from './SearchButton'
-import ProfileButton from './ProfileButton'
 
 const home = <FontAwesomeIcon icon={faHome} />
 const search = <FontAwesomeIcon icon={faSearch} />
@@ -44,8 +42,7 @@ function Nav() {
 				{isAuthenticated 
 					? <LogoutButton /> 
 					: <LoginButton />}
-			</div>
-			
+			</div>			
 		</div>
 		)
 	}

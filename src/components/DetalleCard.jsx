@@ -1,51 +1,61 @@
 import axios from 'axios'
-import { apiURL } from '../tools/definiciones'
+import { useAuth0 } from '@auth0/auth0-react'
 import { useState, useEffect } from 'react';
-import useSWR from 'swr';
-
-import Rating from "./Rating";
 import { useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faHeart } from "@fortawesome/free-solid-svg-icons";
+
 import { tomarFechaFormatoArg } from '../tools/functions'
+import { apiURL } from '../tools/definiciones'
+
+import Rating from "./Rating";
 
 const heart = <FontAwesomeIcon icon={faHeart} />
 const back = <FontAwesomeIcon icon={faArrowLeft} />
-
 
 function DetalleCard({ datos }) {
 	console.log("CARD", datos);
 	const navigate = useNavigate();
 	const [favorito, setFavorito] = useState(false)
 
+	const { user, isAuthenticated, loginWithRedirect } = useAuth0();
+
+	const userID = isAuthenticated ? user.sub : "";
+	
 	const setFarovito = async () => {
-		if(!favorito){
-			const uri = `${apiURL}/?accion=set-favorito`;
-			const data = {
-				userID: "1",
-				peliID: datos.id 
+		if(isAuthenticated){
+			if(!favorito){
+				const uri = `${apiURL}/?accion=set-favorito`;
+				const data = {
+					userID: userID,
+					peliID: datos.id, 
+					afiche: datos.image.medium,
+					nombre: datos.name 
+				}
+				const headers = {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				};
+				// console.log("DATOS", datos)
+				await axios.post(uri, data, {headers}
+				).then(response => {
+					console.log("Success ========>", response);
+					setFavorito(true);
+				})
+				.catch(error => {
+						console.log("Error ========>", error);
+				})
 			}
-			const headers = {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			};
-			// console.log("DATOS", datos)
-			await axios.post(uri, data, {headers}
-			).then(response => {
-				console.log("Success ========>", response);
-				setFavorito(true);
-			})
-			.catch(error => {
-					console.log("Error ========>", error);
-			})
+		}else{
+			loginWithRedirect();
 		}
+
 	}
 
 	const getFarovito = async () => {
-		const uri = `${apiURL}/?accion=get-favorito&peliID=${datos.id}=&userID=1`;
+		const uri = `${apiURL}/?accion=get-favorito&peliID=${datos.id}=&userID=${userID}`;
 		const headers = {
 			'Content-Type': 'application/x-www-form-urlencoded'
 		};
-		// console.log("DATOS", datos)
 		await axios.get(uri, {headers}
 		).then(response => {
 			console.log("Success F =>", response );

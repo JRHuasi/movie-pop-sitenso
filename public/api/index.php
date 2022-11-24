@@ -15,9 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 			$datosArray = $_comentarios->listaComentarios($_GET['peli-id']);
 			// $datosArray = $_GET;
 			break;
-			case 'get-favorito':
-				$datosArray = $_comentarios->getFavorito($_GET['userID'],$_GET['peliID']);
-				// $datosArray = $_GET;
+    case 'get-favorito':
+      $datosArray = $_comentarios->getFavorito($_GET['userID'],$_GET['peliID']);
+      // $datosArray = $_GET;
+      break;
+    case 'pelis-favoritas':
+      $datosArray = $_comentarios->getPelisFavoritas($_GET['userID']);
+      // $datosArray = $_GET;
 			break;
 		}
   // devuelvo una respuesta
@@ -33,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 			$datosArray = $_comentarios->addComentario($_POST['userID'],$_POST['peliID'], $_POST['texto']);
 			break;
 		case 'set-favorito':
-			$datosArray = $_comentarios->setFavorito($_POST['userID'],$_POST['peliID']);
+			$datosArray = $_comentarios->setFavorito($_POST['userID'],$_POST['peliID'],$_POST['afiche'],$_POST['nombre']);
 			break;
 	}  // devuelvo una respuesta
   header('Content-Type: application/json');

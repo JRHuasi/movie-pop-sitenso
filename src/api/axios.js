@@ -5,9 +5,13 @@ export const apiLocal = axios.create({
 	baseURL: apiURL
 })
 
-
 export const getListaComentarios = async (peliID) => {
 	const response = await apiLocal.get(`?accion=lista-comentarios&peli-id=${peliID}`)
+	return response.data
+}
+
+export const getPelisFavoritas = async (userID) => {
+	const response = await apiLocal.get(`?accion=pelis-favoritas&userID=${userID}`)
 	return response.data
 }
 
