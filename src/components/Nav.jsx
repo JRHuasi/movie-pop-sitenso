@@ -16,11 +16,12 @@ function Nav() {
 	const { isAuthenticated } = useAuth0()
 	const navigate = useNavigate()
 	let location = useLocation()
+	let aqui = location.pathname.split("/")[1];
 	
 	return (
 		<div className='nav'>
 			<div>
-				{ location.pathname !== '/' 
+				{ aqui === 'detalle' 
 				&& <>
 						<div className="boton" onClick={() => navigate(-1)}>
 							{back}
