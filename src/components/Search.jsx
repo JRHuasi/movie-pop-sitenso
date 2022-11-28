@@ -1,9 +1,12 @@
 import { useEffect, useState, useContext } from 'react'
 import { SearchContext } from '../context/SearchContext'
 import { searchMovie } from '../api/axios'
-import { Spinner } from './Spinner'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Peliculas from './Peliculas'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+
+const spinner = <FontAwesomeIcon icon={faSpinner} />
 
 function Search() {
 	const [listaPeliculas, setListaPeliculas] = useState([])
@@ -49,7 +52,7 @@ function Search() {
 				</form>
 			</div>
 			{spinnerShow 
-				?	<Spinner />
+				?	<div className="spinner">{spinner}</div>
 				:	<Peliculas lista={listaPeliculas} />
 			}
 		</div>
