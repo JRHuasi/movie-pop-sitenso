@@ -1,5 +1,3 @@
-
-
 function Portada() {
 	return (
 		<div className="portada">

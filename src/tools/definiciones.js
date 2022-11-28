@@ -6,6 +6,6 @@ const uris =
 ];
 
 // 0 localhost
-// 1 dominio real
+// 1 remote
 const entorno = window.location.hostname == "localhost" ? 0 : 1;
 export const apiURL = uris[entorno];

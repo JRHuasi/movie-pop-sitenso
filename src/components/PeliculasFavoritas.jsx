@@ -3,8 +3,6 @@ import { getPelisFavoritas } from '../api/axios'
 import { useState, useEffect } from 'react';
 import Serie from "./Serie";
 
-
-
 function PeliculasFavoritas({userID}) {	
 	const [listaPeliculas, setListaPeliculas] = useState([])
 

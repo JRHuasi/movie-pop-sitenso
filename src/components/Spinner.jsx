@@ -1,7 +1,14 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
-function Spinner() {
+
+const Spinner = () => {
 	return (
-		<p>Cargando...</p>
+		<>
+		<div className="spinner">
+			<FontAwesomeIcon icon={faSpinner} />
+		</div>
+		</>
 	)
 }
 
