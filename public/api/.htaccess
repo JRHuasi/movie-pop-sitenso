@@ -5,16 +5,16 @@
 RewriteEngine On
 
 RewriteEngine On
-RewriteCond %{HTTP_HOST} api\.tafidelvalle\.com [NC]
+RewriteCond %{HTTP_HOST} moviepop\.tucma\.com/api [NC]
 RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ https://api.tafidelvalle.com/$1 [R,L]
+RewriteRule ^(.*)$ https://moviepop.tucma.com/api$1 [R,L]
 
-# esta lineas son para quitar la ext .php
+# quitar la ext .php
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.*)$ $1.php
 
-# esta lineas son para quitar la ext .html
+# quitar la ext .html
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.*)$ $1.html

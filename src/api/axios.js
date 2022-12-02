@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { apiURL } from '../tools/definiciones'
+import { apiURL, apiURLTV } from '../tools/definiciones'
 
 export const apiLocal = axios.create({
 	baseURL: apiURL
@@ -15,6 +15,8 @@ export const getPelisFavoritas = async (userID) => {
 	return response.data
 }
 
+// acceso a la web de la API
+/* 
 export const apiTVMaze = axios.create({
 	baseURL: 'http://api.tvmaze.com'
 })
@@ -27,4 +29,20 @@ export const searchMovie = async (texto) => {
 export const searchMovieDetail = async (id) => {
 	const response = await apiTVMaze.get(`/shows/${id}?embed=cast`)
 	return response.data
+} */
+
+export const apiTVMaze = axios.create({
+	baseURL: apiURLTV
+})
+
+export const searchMovie = async (texto) => {
+	const response = await apiTVMaze.get(`movies/${texto}`)
+	return response.data
 }
+
+export const searchMovieDetail = async (id) => {
+	const response = await apiTVMaze.get(`movie-detail/${id}`)
+	return response.data
+}
+
+
