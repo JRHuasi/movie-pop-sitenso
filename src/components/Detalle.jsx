@@ -6,7 +6,6 @@ import DetalleCard from "./DetalleCard";
 import ComentariosLista from "./ComentariosLista";
 import ComentariosForm from "./ComentariosForm";
 
-
 function Detalle() {
 	const navigate = useNavigate();
 

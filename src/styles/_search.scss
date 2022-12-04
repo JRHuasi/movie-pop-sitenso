@@ -2,28 +2,42 @@
 	margin-top: 50px;
 	width: 95%;
 	margin: auto;
-	
+	position: relative;
 	.form{
 		max-width: 650px;
 		margin: auto;
-		input {
-			display: block;
+		.input-search{
+			position: relative;
 			width: 350px;
-			background-color: rgba(255,255,255,.04);
-			border: none;
-			border-radius: 5px;
-			padding: 10px;
-			color: white;
-			margin-bottom: 20px;
 			margin: auto;
 			@media (max-width: 768px) {
 				width: 80%;
+			}
+			input {
+				display: block;
+				background-color: rgba(255,255,255,.04);
+				border: none;
+				border-radius: 5px;
+				padding: 10px;
+				color: white;
+				margin-bottom: 20px;
+				margin: auto;
+				width: 100%;
+			}
+			.borrar {
+				position: absolute;
+				right: -3px;
+				bottom: 5px;
+				font-weight: bold;
+				font-size: 1.1rem;
 			}
 		}
 	}
 
 	.spinner {
-		// position: absolute;
+		position: absolute;
+		left: 30%;
+		top: 50%;
 		margin: auto;
 		margin-top: 50px;
 		animation: spin infinite 2s linear;

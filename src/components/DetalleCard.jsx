@@ -10,7 +10,6 @@ import { apiURL } from '../tools/definiciones'
 
 import Rating from "./Rating";
 
-const heart = <FontAwesomeIcon icon={faHeart} />
 const back = <FontAwesomeIcon icon={faArrowLeft} />
 
 function DetalleCard({ datos }) {
@@ -83,17 +82,12 @@ function DetalleCard({ datos }) {
 					src={afiche}
 					alt="datos.name"
 				/>
-				{/* rating */}
-				<div className="rating">
-					<div className="calificacion">
-						{datos.rating.average !== null	&& <Rating valor={datos.rating.average} />}						
-					</div>
-					<div className={"favorito " + (favorito ? 'elegido' : '') + " boton"}>
-						<div onClick={setFarovito}>
-							{heart}
-						</div>
-					</div>
-				</div>
+				{/* rating - favoritos */}
+				<Rating 
+					valor={datos.rating.average} 
+					setFarovito={setFarovito} 
+					favorito={favorito}
+				/>
 			</div>
 			<div className="datos">
 				{/* título */}

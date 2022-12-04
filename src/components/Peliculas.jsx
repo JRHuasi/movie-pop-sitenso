@@ -1,6 +1,5 @@
 import Pelicula from "./Pelicula"
 
-
 function Peliculas({lista}) {
 	return (
 		<>

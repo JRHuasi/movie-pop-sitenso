@@ -1,0 +1,19 @@
+.rating-fav {
+	display: grid;
+	grid-template-columns: 8fr 1fr;
+	gap: 10px;
+	position: absolute;
+	bottom: 6px;
+	width: 100%;
+	background-color: rgba(0,0,0,.3);
+	padding: 3px 0;
+	.calificacion{
+		margin-left: 10px;
+	}
+	.favorito {
+		text-align: center;
+		&.elegido{
+			color: red;
+		}
+	}
+}
