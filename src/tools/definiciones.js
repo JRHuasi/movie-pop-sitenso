@@ -5,7 +5,7 @@ const uris =
 	"https://moviepop.tucma.com/api"
 ];
 
-const urisTV = 
+const urisLara = 
 [
 	"http://127.0.0.1:8000/api/",
 	"https://apimoviepop.tucma.com/api/"
@@ -15,4 +15,4 @@ const urisTV =
 // 1 remote
 const entorno = window.location.hostname == "localhost" ? 0 : 1;
 export const apiURL = uris[entorno];
-export const apiURLTV = urisTV[entorno];
+export const apiURLLara = urisLara[entorno];

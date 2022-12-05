@@ -1,25 +1,37 @@
+import { AuthContext } from '../context/AuthContext'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate} from 'react-router-dom'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PeliculasFavoritas from './PeliculasFavoritas';
+import Nav from './Nav';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+
+const perfil = <FontAwesomeIcon icon={faUser} />
 
 function Profile() {
-	const { user, isAuthenticated, loginWithRedirect } = useAuth0();
+	// const { user, isAuthenticated, loginWithRedirect } = useAuth0();
+	const {autenticated, isActive} = useContext(AuthContext)
 	const navigate = useNavigate();
 
-	!isAuthenticated && navigate('/')
+	!autenticated && navigate('/')
 
-	const userID = isAuthenticated ? user.sub : "";
+	const userID = localStorage.getItem('id');
+	const userName = localStorage.getItem('name');
+	const userEmail = localStorage.getItem('email');
 	console.log("USER USER", userID)
 
 	return (
-		isAuthenticated && (
+		autenticated && (
 			<>
+			<Nav/>
 			<div className='profile'>
-				<img src={user.picture} alt={user.name}/>
+				<div class="perfil">
+				{perfil}
+				</div>
 				<div className='datos'>
-					<div className="nombre">{user.name}</div>
-					<div className="email">{user.email}</div>
+					<div className="nombre">{userName}</div>
+					<div className="email">{userEmail}</div>
 				</div>
 			</div>
 			<div className='favoritas'>					

@@ -35,7 +35,7 @@
 	}
 
 	.spinner {
-		position: absolute;
+		position: fixed;
 		left: 30%;
 		top: 50%;
 		margin: auto;
@@ -46,9 +46,7 @@
 		z-index: 99;
 		color: w;
 	}
-	
 }
-
 
 @keyframes spin {
 	from {

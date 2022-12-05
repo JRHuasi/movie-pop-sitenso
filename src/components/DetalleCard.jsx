@@ -1,29 +1,39 @@
+import { AuthContext } from '../context/AuthContext'
 import axios from 'axios'
-import { useAuth0 } from '@auth0/auth0-react'
-import { useState, useEffect } from 'react';
+// import { useAuth0 } from '@auth0/auth0-react'
+import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
+import { SearchContext } from '../context/SearchContext'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 import { tomarFechaFormatoArg } from '../tools/functions'
 import { apiURL } from '../tools/definiciones'
+import { isFavorita } from '../api/axios'
 
 import Rating from "./Rating";
 
 const back = <FontAwesomeIcon icon={faArrowLeft} />
 
 function DetalleCard({ datos }) {
-	console.log("CARD", datos);
+	// console.log("CARD", datos);
+	const {autenticated} = useContext(AuthContext)
 	const navigate = useNavigate();
-	const [favorito, setFavorito] = useState(false)
+	const [isFavorito, setIsFavorito] = useState(false)
 
-	const { user, isAuthenticated, loginWithRedirect } = useAuth0();
+	// const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 
-	const userID = isAuthenticated ? user.sub : "";
+	// console.log({autenticated})
+	const userID = localStorage.getItem('id');
+	const userName = localStorage.getItem('name');
+	const userEmail = localStorage.getItem('email');
+
+	const {checkFavorita} = useContext(SearchContext)
 	
 	const setFarovito = async () => {
-		if(isAuthenticated){
-			if(!favorito){
+		if(autenticated){
+			if(!isFavorito){
 				const uri = `${apiURL}/?accion=set-favorito`;
 				const data = {
 					userID: userID,
@@ -50,27 +60,13 @@ function DetalleCard({ datos }) {
 
 	}
 
-	const getFarovito = async () => {
-		const uri = `${apiURL}/?accion=get-favorito&peliID=${datos.id}=&userID=${userID}`;
-		const headers = {
-			'Content-Type': 'application/x-www-form-urlencoded'
-		};
-		await axios.get(uri, {headers}
-		).then(response => {
-			console.log("Success F =>", response );
-			setFavorito(response.data.id !== undefined ? true : false);
-			console.log({favorito})
-			console.log(typeof response.data.id)
-		})
-		.catch(error => {
-				console.log("Error F =>", error);
-		})
-	}
-
 	useEffect(() => {
-		getFarovito();
+		// consulta si está marcada
+		setIsFavorito(checkFavorita(datos.id, userID))
+		console.log({isFavorito})
 	}, [])
 
+	// si no devuelve una imagen asigno comodin.png
 	const afiche = datos.image !== null 
 	? datos.image.original 
 	: '/assets/imagenes/comodin.jpg'
@@ -86,7 +82,7 @@ function DetalleCard({ datos }) {
 				<Rating 
 					valor={datos.rating.average} 
 					setFarovito={setFarovito} 
-					favorito={favorito}
+					favorito={isFavorito}
 				/>
 			</div>
 			<div className="datos">

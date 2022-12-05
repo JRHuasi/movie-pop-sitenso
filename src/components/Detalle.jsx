@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import DetalleCard from "./DetalleCard";
 import ComentariosLista from "./ComentariosLista";
 import ComentariosForm from "./ComentariosForm";
+import Nav from './Nav';
 
 function Detalle() {
 	const navigate = useNavigate();
@@ -34,6 +35,7 @@ function Detalle() {
 
 	return (
 		<div>
+			<Nav/>
 			{ !loading 
 				&& 
 				<>

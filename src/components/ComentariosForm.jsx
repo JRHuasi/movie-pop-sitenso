@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { AuthContext } from '../context/AuthContext'
+import { useState, useContext } from 'react'
 import axios from 'axios'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from "react-router-dom";
@@ -10,17 +11,22 @@ function ComentariosForm({peliID, getComentarios}) {
 	const [texto, setTexto] = useState("")
 	const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 	const navigate = useNavigate();
+	const {autenticated} = useContext(AuthContext)
+
+	const userID = localStorage.getItem('id');
+	const userName = localStorage.getItem('name');
+	const userEmail = localStorage.getItem('email');
 	
 	const handlesubmit = async (e) => {
 		e.preventDefault();
 		const uri = `${apiURL}/?accion=add-comentario`;
 		const datos = {
-			userID: user.sub,
+			userID: userID,
 			peliID: peliID,
 			texto: texto, 
-			usuario: user.nickname,
-			nombre: user.name,
-			email: user.email
+			usuario: userName,
+			nombre: userName,
+			email: userEmail
 		}
 
 		const headers = {
@@ -38,10 +44,10 @@ function ComentariosForm({peliID, getComentarios}) {
 	}
 	return (
 		<div className='comentario-form'>
-			{isAuthenticated 
+			{autenticated 
 				? 
 				<>
-					<div className='titulo'>¿La viste?<br/>Brindanos tu evaluación o sinopsis</div>
+					<div className='tituloInput'>¿La viste?<br/>Brindanos tu evaluación o sinopsis</div>
 					<form onSubmit={handlesubmit}>
 						<div className='textarea'>
 							<textarea id="aporte" rows="10" onChange={(e) => {
@@ -54,7 +60,7 @@ function ComentariosForm({peliID, getComentarios}) {
 					</form> 
 				</>
 				: <div className='registrate'>
-						<span className="link" onClick={() => loginWithRedirect()}>Ingresá</span> para poder dejar tus comentarios				
+						<span className="link" onClick={() => navigate('/login')}>Ingresá</span> para poder dejar tus comentarios				
 					</div>
 				}
 			

@@ -4,6 +4,7 @@ import App from './App'
 import { Auth0Provider } from '@auth0/auth0-react'
 import './styles/sytles.scss'
 import { SearchContextProvider } from './context/SearchContext'
+import { AuthContextProvider } from './context/AuthContext'
 
 const clientID = import.meta.env.VITE_AUTH0_CLIENT_ID
 const domain = import.meta.env.VITE_AUTH0_DOMAIN
@@ -17,9 +18,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 			domain={domain}
 			redirectUri={window.location.origin}
 		>
-			<SearchContextProvider>
-				<App />
-			</SearchContextProvider>
+			<AuthContextProvider>
+				<SearchContextProvider>
+					<App />
+				</SearchContextProvider>
+			</AuthContextProvider>
 		</Auth0Provider>
   </React.StrictMode>
 )

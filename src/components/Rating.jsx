@@ -15,19 +15,23 @@ function Rating({valor, setFarovito, favorito}) {
 	// si este
 	const estrellas = resto > 7 ? Math.round(valor) : entero;
 	const media = (resto >= 3 && resto <= 7) ? true :false
-	console.log({valor})
+	// console.log({valor})
 
 	return (
 		<div className="rating-fav">
-			<div className="calificacion">
-				<div className='estrellas'>
-					{[...Array(estrellas)].map((e, i) => <div key={i}>{star}</div>)}			
-					<div>
-						{media && (starHalf)}
+			{estrellas &&
+				(
+					<div className="calificacion">
+						<div className='estrellas'>
+							{[...Array(estrellas)].map((e, i) => <div key={i}>{star}</div>)}			
+							<div>
+								{media && (starHalf)}
+							</div>
+							<small>[{valor}]</small>
+						</div>
 					</div>
-					<small>[{valor}]</small>
-				</div>
-			</div>
+					)
+				}
 			<div className={"favorito " + (favorito ? 'elegido' : '') + " boton"}>
 				<div onClick={setFarovito}>
 					{heart}

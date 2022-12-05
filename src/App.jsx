@@ -8,15 +8,16 @@ import LogoutButton from './components/LogoutButton'
 import Nav from './components/Nav'
 import Search from './components/Search'
 import Detalle from './components/Detalle'
+import Login from './components/Login'
 
 function App() {
   return (
 		<div className='container'>
 			<Router>
-				<Nav />
 				<Routes>
 					<Route path="/" element={<Portada/>}/>
-					<Route path="/search" element={<Search />}/>
+					<Route path="/login" element={<Login />}/>z
+					<Route path="/search" element={<Search />}/>z
 					<Route path="/profile" element={<Profile/>}/>
 					<Route path="/detalle/:id" element={<Detalle />}/>
 				</Routes>
